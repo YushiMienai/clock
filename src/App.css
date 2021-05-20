@@ -1,3 +1,4 @@
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 .App {
   text-align: center;
 }
@@ -35,4 +36,56 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+body {
+  background: #1e555c;
+  color: white;
+  font-size: 30px;
+  text-align: center;
+}
+
+.main-title {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+.length-control {
+  width: 250px;
+  display: inline-block;
+}
+button {
+  background: none;
+  outline: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 1px 6px;
+}
+
+.btn-level {
+  display: inline-block;
+}
+
+.timer {
+  border: 7px solid #13353a;
+  margin: 20px auto 10px auto;
+  width: 270px;
+  height: 160px;
+  border-radius: 50px;
+  position: relative;
+}
+
+.timer-wrapper {
+  position: absolute;
+  width: 190px;
+  height: 110px;
+  left: 50%;
+  top: 50%;
+  margin-left: -95px;
+  margin-top: -57px;
+}
+#time-left {
+  font-family: digital;
+  font-size: 80px;
 }
