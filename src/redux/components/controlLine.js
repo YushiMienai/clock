@@ -18,6 +18,7 @@ const ControlLine = ({breakLabel, sessionLabel, changeValue}) => {
             <button className="btn-level" id={incrementButton} value={"+"} onClick={() => changeValue(lowName, 1)}>
                 <i className="fa fa-arrow-up fa-2x"/>
             </button>
+            <audio id="beep" preload="auto" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"/>
         </div>
     }
 

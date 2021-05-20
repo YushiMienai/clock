@@ -14,3 +14,8 @@ export const countDown = () => {
         type: 'COUNT_TIMER'
     }
 }
+export const resetTimer = () => {
+    return {
+        type: 'RESET_TIMER'
+    }
+}

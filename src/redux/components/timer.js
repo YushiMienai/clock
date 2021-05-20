@@ -1,39 +1,54 @@
-import React, {Fragment} from "react";
-import {startStopTimer, countDown} from "../actions";
+import React, {Fragment, useState, useEffect} from "react";
+import {startStopTimer, countDown, resetTimer} from "../actions";
 import {connect} from "react-redux";
 
 
-const Timer = ({active, minutes, seconds, startStopTimer, countDown}) => {
+const Timer = ({status, time, color, startStopTimer, countDown, resetTimer}) => {
 
-    const toggleTimer = () => {
-        console.log(active);
+    const [timer, setTimer] = useState(0);
+
+    useEffect(() => {
+        if (time.minutes === "00" && time.seconds === "00") {
+            document.getElementById('beep').play();
+        }
+    }, [time])
+
+    const toggle = () => {
         startStopTimer();
-        if (!active) setTimeout(() => {countDown_()}, 1000);
+        if (timer === 0) {
+            setTimer(setInterval(() => {countDown()}, 1000));
+        } else {
+            stop();
+        }
     }
 
-    const countDown_ = () => {
-        console.log(active);
-        if (!active) {
-            countDown();
-            setTimeout(() => {countDown_()}, 1000);
-        }
+    const stop = () => {
+        console.log(color)
+        clearInterval(timer);
+        setTimer(0);
+    }
+
+    const reset = () => {
+        stop();
+        resetTimer();
+        document.getElementById('beep').pause();
     }
 
     return (
         <Fragment>
-            <div className="timer">
+            <div className="timer" style={{color: color}}>
                 <div className="timer-wrapper">
-                    <div id="timer-label">Session</div>
-                    <div id="time-left">{minutes}:{seconds}</div>
+                    <div id="timer-label">{status}</div>
+                    <div id="time-left">{time.minutes}:{time.seconds}</div>
                 </div>
             </div>
             <div className="timer-control">
-                <button id="start_stop" onClick={() => toggleTimer()}>
+                <button id="start_stop" onClick={() => toggle()}>
                     <i className="fa fa-play fa-2x"/>
                     <i className="fa fa-pause fa-2x"/>
                 </button>
                 <button id="reset">
-                    <i className="fa fa-refresh fa-2x"/>
+                    <i className="fa fa-refresh fa-2x" onClick={() => reset()}/>
                 </button>
             </div>
         </Fragment>
@@ -43,15 +58,16 @@ const Timer = ({active, minutes, seconds, startStopTimer, countDown}) => {
 
 const mapStateToProps = state => {
     return {
-        active: state.active,
-        minutes: state.timer.minutes,
-        seconds: state.timer.seconds
+        status: state.status,
+        time: state.timer,
+        color: state.timeColor
     }
 };
 
 const mapDispatchToProps = {
     startStopTimer: startStopTimer,
-    countDown: countDown
+    countDown: countDown,
+    resetTimer: resetTimer
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer);
