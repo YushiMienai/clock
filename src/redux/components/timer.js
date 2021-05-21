@@ -23,7 +23,6 @@ const Timer = ({status, time, color, startStopTimer, countDown, resetTimer}) => 
     }
 
     const stop = () => {
-        console.log(color)
         clearInterval(timer);
         setTimer(0);
     }
