@@ -5,10 +5,12 @@ import './App.css';
 
 function App() {
     return (
-        <div className="main">
-            <div className="main-title">25 + 5 Clock</div>
-            <ControlLine/>
-            <Timer/>
+        <div id="container">
+            <div className="main">
+                <div className="main-title">25 + 5 Clock</div>
+                <ControlLine/>
+                <Timer/>
+            </div>
         </div>
     );
 }
